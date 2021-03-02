@@ -1,0 +1,11 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  task_name: MyString
+  task_description: MyString
+  task_deadline: 2021-03-03 05:12:28
+
+two:
+  task_name: MyString
+  task_description: MyString
+  task_deadline: 2021-03-03 05:12:28
