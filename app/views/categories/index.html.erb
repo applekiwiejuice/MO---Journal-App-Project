@@ -1,6 +1,6 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Categories</h1>
+<h1>MO Categories for <%= current_user.first_name %></h1>
 
 <table>
   <thead>
@@ -11,6 +11,7 @@
     </tr>
   </thead>
 
+ <% if user_signed_in? %>
   <tbody>
     <% @categories.each do |category| %>
       <tr>
@@ -22,8 +23,9 @@
       </tr>
     <% end %>
   </tbody>
+<% end %>
 </table>
 
 <br>
 
-<%= link_to 'New Category', new_category_path %>
+<%= link_to 'New Category', new_category_path(current_user.id) %>

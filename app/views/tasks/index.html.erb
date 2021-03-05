@@ -1,6 +1,6 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Tasks</h1>
+<h1>Tasks for Category ID: <%=@category.id%></h1>
 
 <table>
   <thead>
@@ -18,9 +18,9 @@
         <td><%= task.task_name %></td>
         <td><%= task.task_description %></td>
         <td><%= task.task_deadline %></td>
-        <td><%= link_to 'Show', task %></td>
-        <td><%= link_to 'Edit', edit_task_path(task) %></td>
-        <td><%= link_to 'Destroy', task, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Show', category_task_path(:id => task.id) %></td>
+        <td><%= link_to 'Edit', edit_category_task_path(:id => task.id) %></td>
+        <td><%= link_to 'Destroy', category_task_path(:id => task.id), method: :delete, data: { confirm: 'Are you sure?' }%></td>
       </tr>
     <% end %>
   </tbody>
@@ -28,4 +28,5 @@
 
 <br>
 
-<%= link_to 'New Task', new_task_path %>
+<%= link_to 'New Task', new_category_task_path %> |
+<%= link_to 'Back', categories_path(current_user.id) %>
