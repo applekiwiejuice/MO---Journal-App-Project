@@ -30,10 +30,19 @@ gem 'bootsnap', '>= 1.4.4', require: false
 
 # Devise
 gem 'devise'
+gem 'rexml'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  gem 'rspec-rails'
+  # gem 'database_rewinder'
+  gem 'capybara'
+  gem 'factory_bot_rails'
+  gem 'shoulda-matchers'
+  gem 'simplecov'
+  gem 'selenium-webdriver'
+  gem 'database_cleaner'
 end
 
 group :development do
@@ -49,8 +58,8 @@ end
 
 group :test do
   # Adds support for Capybara system testing and selenium driver
-  gem 'capybara', '>= 3.26'
-  gem 'selenium-webdriver'
+  # gem 'capybara', '>= 3.26'
+  # gem 'selenium-webdriver'
   # Easy installation and use of web drivers to run system tests with browsers
   gem 'webdrivers'
 end
