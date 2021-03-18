@@ -1,18 +1,12 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <strong>Task name:</strong>
+<h1>
   <%= @task.task_name %>
-</p>
-
+</h1>
 <p>
-  <strong>Task description:</strong>
   <%= @task.task_description %>
 </p>
-
 <p>
   <strong>Task deadline:</strong>
-  <%= @task.task_deadline %>
+  <%= @task.task_deadline.to_formatted_s(:long) %>
 </p>
 
 <%= link_to 'Edit', edit_category_task_path(@task) %> |

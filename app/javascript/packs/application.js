@@ -20,6 +20,8 @@ import '../stylesheets/application'
 import '../stylesheets/normalize'
 import '../stylesheets/cover'
 import '../stylesheets/signin'
+import '../stylesheets/signup'
+import '../stylesheets/edit_account'
 
 document.addEventListener('turbolinks:load', () => {
      $('[data-toggle="tooltip"]').tooltip()

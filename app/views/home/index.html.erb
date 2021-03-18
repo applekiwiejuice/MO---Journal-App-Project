@@ -1,7 +1,9 @@
-<h1>Home</h1>
-<hr>
+
+
 <% if current_user == nil %>
-<p>No user signed-in</p>
+<%= image_tag ('mo_white_logo.png'), class: "img-60" %>
 <% else %>
-<p>Current User Signed-in: <%= current_user.first_name %></p>
+<%= image_tag ('mo_hello.png'), class: "img-40" %>
+<p>Welcome! <%= current_user.first_name %></p>
+<%= link_to "Start Organizing", categories_path(current_user.id), class: "btn btn-lg btn-light" %>
 <% end %>

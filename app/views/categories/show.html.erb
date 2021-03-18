@@ -1,16 +1,11 @@
-<p id="notice"><%= notice %></p>
-
+<h1><%= @category.category_name %></h1>
 <p>
-  <strong>Category name:</strong>
-  <%= @category.category_name %>
+  "<%= @category.category_description %>"
 </p>
 
-<p>
-  <strong>Category description:</strong>
-  <%= @category.category_description %>
-</p>
+<%= link_to 'View Tasks', category_tasks_path(@category), class: "btn btn-lg btn-info mb-3" %>
 
-<%= link_to 'View Tasks', category_tasks_path(@category) %> |
+<br />
 
 <%= link_to 'Edit', edit_category_path(@category) %> |
 

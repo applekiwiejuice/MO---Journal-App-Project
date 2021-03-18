@@ -1,4 +1,4 @@
-
+<%= image_tag ('mo_white_logo.png'), class: "img-25" %>
 <%= form_for(resource, as: resource_name, url: session_path(resource_name), :html => {:class => "form-signin"}) do |f| %>
   <%= f.email_field :email, autofocus: true, autocomplete: "email", type: "email", id: "inputEmail", class: "form-control", placeholder: "Email address" %>
   <%= f.password_field :password, autocomplete: "current-password", type: "password", id: "inputPassword", class: "form-control", placeholder: "Password" %>

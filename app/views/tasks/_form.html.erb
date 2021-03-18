@@ -1,32 +1,33 @@
-<%= form_with model: [@category,@task], local: true do |form| %>
+<%= form_with model: [@category,@task], local: true, :html => {:class => "form-signin"} do |form| %>
   <% if task.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(task.errors.count, "error") %> prohibited this task from being saved:</h2>
-
-      <ul>
+      <div class="alert alert-light alert-dismissible fade show alert-fixed" role="alert">
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+      </button>
         <% task.errors.each do |error| %>
-          <li><%= error.full_message %></li>
+          <p class="small-warning d-inline"><%= error.full_message %> - </p>
         <% end %>
-      </ul>
+      </div>
     </div>
   <% end %>
 
   <div class="field">
     <%= form.label :task_name %>
-    <%= form.text_field :task_name %>
+    <%= form.text_field :task_name, class: "form-control" %>
   </div>
 
-  <div class="field">
+  <div class="field mt-2">
     <%= form.label :task_description %>
-    <%= form.text_field :task_description %>
+    <%= form.text_area :task_description, class: "form-control" %>
   </div>
 
-  <div class="field">
+  <div class="field mt-2">
     <%= form.label :task_deadline %>
     <%= form.datetime_select :task_deadline %>
   </div>
 
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit "Create/Update Task", class: "btn btn-lg btn-outline-light btn-block mt-3" %>
   </div>
 <% end %>

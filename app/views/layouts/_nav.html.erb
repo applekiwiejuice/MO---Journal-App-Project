@@ -1,24 +1,58 @@
-  <header class="masthead mb-auto">
-    <div class="inner">
-      <h3 class="masthead-brand">MO™</h3>
-      <nav class="nav nav-masthead justify-content-center">
-        <%= link_to "Home", root_path , class: "nav-link active" %>
-        <% if user_signed_in? %>
-	    <%= link_to "Account", edit_user_registration_path, class: "nav-link" %>
-        <%= link_to "Sign Out", destroy_user_session_path, method: :delete, class: "nav-link" %>
-	    <% else %>
-        <%= link_to "Sign In", new_user_session_path, class: "nav-link" %> 
-	    <% end %>
-      </nav>
-    </div>
-
-	
-
-	<% if notice %>
+  <% if notice %>
       <%= render 'layouts/notice' %>
     <% end %>
 
 	<% if alert %>
       <%= render 'layouts/alert' %>
-    <% end %>
+  <% end %>
+  
+  <header class="masthead mb-auto mt-5">
+    <div class="inner">
+      <h3 class="masthead-brand">MO™</h3>
+      <nav class="nav nav-masthead justify-content-center">
+      <% if user_signed_in? %>
+      <% if current_page?(root_path) %>
+        <%= link_to "Home", root_path , class: "nav-link active" %>
+        <% if user_signed_in? %>
+          <%= link_to "MO™ Categories", categories_path(current_user.id), class: "nav-link" %>
+	        <%= link_to "Edit Account", edit_user_registration_path, class: "nav-link" %>
+        <%= link_to "Sign Out", destroy_user_session_path, method: :delete, class: "nav-link" %>
+	        <% else %>
+        <%= link_to "Sign In", new_user_session_path, class: "nav-link" %> 
+	      <% end %>
+
+      <% elsif current_page?(edit_user_registration_path) %>
+        <%= link_to "Home", root_path , class: "nav-link" %>
+        <% if user_signed_in? %>
+          <%= link_to "MO™ Categories", categories_path(current_user.id), class: "nav-link" %>
+	        <%= link_to "Edit Account", edit_user_registration_path, class: "nav-link active" %>
+        <%= link_to "Sign Out", destroy_user_session_path, method: :delete, class: "nav-link" %>
+	        <% else %>
+        <%= link_to "Sign In", new_user_session_path, class: "nav-link" %> 
+	    <% end %>
+
+      <% else %>
+        <%= link_to "Home", root_path , class: "nav-link" %>
+        <% if user_signed_in? %>
+          <%= link_to "MO™ Categories", categories_path(current_user.id), class: "nav-link active" %>
+	        <%= link_to "Edit Account", edit_user_registration_path, class: "nav-link" %>
+        <%= link_to "Sign Out", destroy_user_session_path, method: :delete, class: "nav-link" %>
+	        <% else %>
+        <%= link_to "Sign In", new_user_session_path, class: "nav-link" %> 
+	      <% end %>
+      <% end %>
+
+        <% else %>
+          <% if current_page?(root_path) %>
+          <%= link_to "Home", root_path , class: "nav-link active" %>
+          <%= link_to "Sign In", new_user_session_path, class: "nav-link" %> 
+          <% else %>
+          <%= link_to "Home", root_path , class: "nav-link" %>
+          <%= link_to "Sign In", new_user_session_path, class: "nav-link active" %> 
+          <% end %>
+      <% end %>
+
+        
+      </nav>
+    </div>
   </header>
