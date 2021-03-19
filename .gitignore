@@ -37,3 +37,5 @@ yarn-debug.log*
 
 # Did not delete Test for reference
 /test
+
+/config/local_env.yml
