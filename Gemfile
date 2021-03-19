@@ -29,8 +29,12 @@ gem 'jbuilder', '~> 2.7'
 gem 'bootsnap', '>= 1.4.4', require: false
 
 # Devise
-gem 'devise'
+gem 'devise', github: 'heartcombo/devise'
 gem 'rexml'
+
+#omniauth
+gem 'omniauth-facebook'
+gem 'omniauth-rails_csrf_protection'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
