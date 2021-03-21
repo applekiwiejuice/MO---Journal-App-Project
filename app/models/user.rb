@@ -12,7 +12,7 @@ class User < ApplicationRecord
   validates :email, presence: true
   validates :password, presence: true
 
-  devise :omniauthable, omniauth_providers: [:google_oauth2, :facebook]
+  devise :omniauthable, omniauth_providers: [:google_oauth2, :facebook, :github]
 
   def self.from_omniauth(auth)
   where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
