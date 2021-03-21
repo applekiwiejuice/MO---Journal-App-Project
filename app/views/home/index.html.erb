@@ -1,4 +1,20 @@
-
+<hr>
+<p>
+	Saved User Data Reference
+</p>
+<br>
+<% @users.each do |friend| %>
+  <hr>
+  <p>User ID: <%= friend.id %></p>
+  <p>Email: <%= friend.email %></p>
+  <p>First Name: <%= friend.first_name %></p>
+  <p>Last Name: <%= friend.last_name %></p>
+  <% if current_user == nil %>
+  <% else %>
+  <%= link_to "MO Categories", categories_path(current_user.id) %>
+  <% end %>
+  <hr>
+<% end %>
 
 <% if current_user == nil %>
 <%= image_tag ('mo_white_logo.png'), class: "img-60" %>
