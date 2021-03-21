@@ -303,6 +303,7 @@ DEPENDENCIES
   factory_bot_rails
   jbuilder (~> 2.7)
   listen (~> 3.3)
+  omniauth
   omniauth-facebook
   omniauth-google-oauth2
   omniauth-rails_csrf_protection

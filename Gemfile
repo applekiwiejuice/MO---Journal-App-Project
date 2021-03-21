@@ -33,6 +33,7 @@ gem 'devise', github: 'heartcombo/devise'
 gem 'rexml'
 
 #omniauth
+gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'omniauth-rails_csrf_protection'
 gem 'omniauth-google-oauth2'
