@@ -48,7 +48,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   def all
     user = User.from_omniauth(request.env["omniauth.auth"], current_user)
     if user.persisted?
-            flash[:notice] = "you are successfully logged in!!"
+            flash[:notice] = I18n.t 'devise.omniauth_callbacks.success', kind: user.provider.to_sym
             sign_in_and_redirect(user)
         else
             session["devise.user_attributes"] = user.attributes
