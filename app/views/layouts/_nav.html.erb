@@ -8,7 +8,8 @@
   
   <header class="masthead mb-auto mt-5">
     <div class="inner">
-      <h3 class="masthead-brand">MO™</h3>
+      <h3><%= link_to "MO™", root_path, class: "masthead-brand" %></h3>
+      <%# <h3 class="masthead-brand">MO™</h3> %>
       <nav class="nav nav-masthead justify-content-center">
       <% if user_signed_in? %>
       <% if current_page?(root_path) %>
