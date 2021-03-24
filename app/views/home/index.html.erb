@@ -2,6 +2,6 @@
 <%= image_tag ('mo_white_logo.png'), class: "img-60" %>
 <% else %>
 <%= image_tag ('mo_hello.png'), class: "img-40" %>
-<p>Welcome! <%= current_user.first_name %></p>
+<p>Welcome! <%= current_user.email %></p>
 <%= link_to "Start Organizing", categories_path(current_user.id), class: "btn btn-lg btn-light" %>
 <% end %>

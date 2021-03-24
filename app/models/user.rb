@@ -52,6 +52,12 @@ class User < ApplicationRecord
 
   # omniauth facebook provider
   def self.from_omniauth(auth, current_user)
+    where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
+    user.email = auth.info.email
+    user.password = Devise.friendly_token[0, 20]
+    user.first_name = auth.info.name
+    end
+
     # check for existing authorization
     # Find or create Authorization with: provider, uid, token and secret
     authorization = Authorization.where(
@@ -64,6 +70,10 @@ class User < ApplicationRecord
     if authorization.user.blank?
       user = current_user.nil? ? User.where('email = ?', auth["info"]["email"]).first : current_user
 
+      # User.where(email: auth['info']['email']).first_or_create
+      # p auth.info
+      # p auth.email
+      # p user
       # save user related data in user table
       if user.blank?
         User.new(
@@ -75,7 +85,7 @@ class User < ApplicationRecord
         )
         # since twitter don't provide email, 
         # so you need to skip validation for twitter.
-        auth.provider == "twitter" ?  user.save!(:validate => false) :  user.save!
+        # auth.provider == "twitter" ?  user.save!(:validate => false) :  user.save!
       end
 
       # store authorization related data in authorization table
