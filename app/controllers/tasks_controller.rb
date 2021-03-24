@@ -22,6 +22,10 @@ class TasksController < ApplicationController
   def edit
   end
 
+  # def toogle_done
+  # @task.toggle! :task_done
+  # end
+
   # POST /tasks or /tasks.json
   def create
     @task = @category.tasks.build(task_params)

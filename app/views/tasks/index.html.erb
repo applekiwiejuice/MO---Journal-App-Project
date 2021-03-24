@@ -1,7 +1,8 @@
 <%= image_tag ('mo_task.png'), class: "img-30" %>
-<h1><%=@category.category_name%></h1>
-<p>MO™ Tasks</p>
-<%= link_to 'Add Task', new_category_task_path, class: "btn btn-lg btn-light" %>
+<h1>Categories <i class="fas fa-angle-right"></i> <%=@category.category_name%></h1>
+<%# <p>MO™ Tasks</p> %>
+<%= link_to ' Task', new_category_task_path, class: "fas fa-plus btn btn-lg btn-light" %>
+
 <hr />
 <div class="container">
 <div class="row mb-3">
@@ -15,6 +16,8 @@
         <p class="card-text text-muted">Deadline: <%= task.task_deadline.to_formatted_s(:long) %></p>
         <hr />
         <div class="row d-inline">
+
+        <%= link_to ' Done', edit_category_task_path(:id => task.id), class: "fas fa-check-square card-link btn btn-success btn-sm" %>
         <%= link_to 'Edit', edit_category_task_path(:id => task.id), class: "card-link btn btn-light btn-sm" %>
         <%= link_to 'Delete', category_task_path(:id => task.id), method: :delete, data: { confirm: 'Are you sure?' }, class: "card-link btn btn-danger btn-sm"%>
         </div>
