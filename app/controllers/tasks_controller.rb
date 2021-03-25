@@ -22,9 +22,8 @@ class TasksController < ApplicationController
   def edit
   end
 
-  # def toogle_done
-  # @task.toggle! :task_done
-  # end
+  def patch
+  end
 
   # POST /tasks or /tasks.json
   def create
@@ -75,6 +74,6 @@ class TasksController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def task_params
-      params.require(:task).permit(:task_name, :task_description, :task_deadline)
+      params.require(:task).permit(:task_name, :task_description, :task_deadline, :task_done)
     end
 end

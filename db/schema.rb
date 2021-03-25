@@ -36,6 +36,7 @@ ActiveRecord::Schema.define(version: 2021_03_23_203115) do
   end
 
   create_table "tasks", force: :cascade do |t|
+    t.boolean "task_done"
     t.string "task_name"
     t.string "task_description"
     t.datetime "task_deadline"
