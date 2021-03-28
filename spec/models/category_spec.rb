@@ -6,7 +6,7 @@ RSpec.describe Category, type: :model do
   it { should have_many(:tasks) }
   it { should belong_to(:user) }
 
-  context 'validation tests' do
+  context 'Category validation tests' do
     it 'ensures category name presence' do
       category = Category.new(category_description: 'This is a category description', user_id: 1).save
       expect(category).to eq(false)

@@ -6,7 +6,7 @@ RSpec.describe Task, type: :model do
 
   it { should belong_to(:category) }
 
-  context 'validation tests' do
+  context 'Task validation tests' do
     it 'ensures task name presence' do
       task = Task.new(task_description: 'This is a task description', category_id: 1).save
       expect(task).to eq(false)

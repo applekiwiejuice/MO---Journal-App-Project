@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe 'Creating category process', type: :feature do
   let!(:user) { attributes_for :user}
-  let!(:category) { attributes_for :category }
+  # let!(:category) { attributes_for :category }
   
   before do
     user = FactoryBot.create(:user)
