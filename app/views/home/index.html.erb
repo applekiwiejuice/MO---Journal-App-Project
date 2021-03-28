@@ -3,5 +3,5 @@
 <% else %>
 <%= image_tag ('mo_hello.png'), class: "img-40" %>
 <p>Welcome! <%= current_user.email %></p>
-<%= link_to " Start Organizing", categories_path(current_user.id), class: "fas fa-angle-right btn btn-lg btn-light" %>
+<%= link_to " Start Organizing", categories_path(current_user.id), class: "fas fa-angle-right btn btn-lg btn-light", id: "startOrganizing" %>
 <% end %>

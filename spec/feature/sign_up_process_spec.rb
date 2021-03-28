@@ -9,9 +9,9 @@ it 'should sign up successfully when I input valid user details' do
   within '#new_user' do
       fill_in 'user_first_name', with: user[:first_name]
       fill_in 'user_last_name', with: user[:last_name]
-      fill_in 'user_email', with: user[:email]
-      fill_in 'user_password', with: user[:password]
-      fill_in 'user_password_confirmation', with: user[:password_confirmation]
+      fill_in 'inputEmail', with: user[:email]
+      fill_in 'inputPassword', with: user[:password]
+      fill_in 'inputPasswordConfirmation', with: user[:password_confirmation]
       click_button 'Sign up'
   end
 
@@ -25,9 +25,9 @@ it 'should not sign up when I input mismatch password' do
   within '#new_user' do
       fill_in 'user_first_name', with: user[:first_name]
       fill_in 'user_last_name', with: user[:last_name]
-      fill_in 'user_email', with: user[:email]
-      fill_in 'user_password', with: "123456"
-      fill_in 'user_password_confirmation', with: "123457"
+      fill_in 'inputEmail', with: user[:email]
+      fill_in 'inputPassword', with: "123456"
+      fill_in 'inputPasswordConfirmation', with: "123457"
       click_button 'Sign up'
   end
 

@@ -50,6 +50,8 @@ group :development, :test do
   gem 'simplecov'
   gem 'selenium-webdriver'
   gem 'database_cleaner'
+  gem 'warden-rspec-rails'
+  gem 'faker', :git => 'https://github.com/faker-ruby/faker.git', :branch => 'master'
 end
 
 group :development do

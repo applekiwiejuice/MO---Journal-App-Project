@@ -8,9 +8,9 @@ class User < ApplicationRecord
          has_many :tasks, through: :categories
 
   validates :first_name, presence: true
-  # validates :last_name, presence: true
+  validates :last_name, presence: false
   validates :email, presence: true
-  validates :password, presence: true
+  validates :password, presence: true, length: { minimum: 6 }
 
 #   devise :omniauthable, omniauth_providers: [:google_oauth2, :facebook, :github]
 
@@ -50,7 +50,7 @@ class User < ApplicationRecord
 
   has_many :authorizations
 
-  # omniauth facebook provider
+  # omniauth provider
   def self.from_omniauth(auth, current_user)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
     user.email = auth.info.email

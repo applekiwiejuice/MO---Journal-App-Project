@@ -2,7 +2,7 @@
 <h1>Categories <i class="fas fa-angle-right"></i> <%=@category.category_name%></h1>
 <%# <p>MO™ Tasks</p> %>
 <%= link_to ' ', categories_path(current_user.id), class: "far fa-arrow-alt-circle-left btn btn-lg btn-light" %>
-<%= link_to ' Task', new_category_task_path, class: "fas fa-plus btn btn-lg btn-light" %>
+<%= link_to ' Task', new_category_task_path, class: "fas fa-plus btn btn-lg btn-light", id: "addTask" %>
 <hr />
 <div class="container">
 <div class="row mb-3">

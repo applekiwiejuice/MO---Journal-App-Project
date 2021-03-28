@@ -11,10 +11,10 @@ RSpec.describe 'Sign In process', type: :feature do
     visit new_user_session_path
 
     within '#new_user' do
-      fill_in 'user_email', with: user[:email]
-      fill_in 'user_password', with: user[:password]
+      fill_in 'inputEmail', with: user[:email]
+      fill_in 'inputPassword', with: user[:password]
 
-      click_button 'Log in'
+      click_button 'Sign in'
     end
 
     expect(page).to have_content 'Signed in successfully.'
@@ -25,10 +25,10 @@ RSpec.describe 'Sign In process', type: :feature do
     visit new_user_session_path
 
     within '#new_user' do
-      fill_in 'user_email', with: 'victor@avionschool.com'
-      fill_in 'user_password', with: 'password-ni-victor'
+      fill_in 'inputEmail', with: 'victor@avionschool.com'
+      fill_in 'inputPassword', with: 'password-ni-victor'
 
-      click_button 'Log in'
+      click_button 'Sign in'
     end
 
     expect(page).to have_content 'Invalid Email or password.'
