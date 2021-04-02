@@ -3,6 +3,10 @@ Rails.application.routes.draw do
   # devise_for :users, :paths => 'user'
   devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
 
+  devise_scope :user do
+  get '/users', to: 'devise/registrations#new'
+  get '/users/password', to: 'devise/passwords#new'
+  end
  
   resources :categories do
   resources :tasks

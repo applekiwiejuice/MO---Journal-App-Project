@@ -7,7 +7,8 @@
     <div class="sticky-top mt-3">
       <%= image_tag ('mo_category.png'), class: "img-60" %>
       <h2>Categories <i class="fas fa-angle-right"></i></h2>
-      <%= link_to ' Category', new_category_path(current_user.id), class: "fas fa-plus btn btn-lg btn-light", id: "addCategory"  %>
+      <%= link_to ' ', root_path, class: "far fa-arrow-alt-circle-left btn btn-lg btn-light" %>
+      <%= link_to ' Category', new_category_path(current_user.id), class: "fas fa-plus btn btn-lg btn-info", id: "addCategory"  %>
       <hr />
     </div>
   </div>
@@ -17,15 +18,28 @@
       <div class="row mb-3">
       <% if user_signed_in? %>
           <% @categories.each do |category| %>
-          <div class="col-sm-12 col-md-6 col-lg-4">
+          <div class="col-sm-12 col-md-6 col-lg-6">
             <div class="card bg-dark border-info text-white mb-4 box-shadow">
               <div class="card-body">
+
+              <% if category.category_name.size <= 60 %>
               <h3 class="card-title" style="font-size: clamp(18px, 4vw, 24px);"><%= category.category_name %></h3>
-              <h6 class="card-subtitle mb-2 text-muted small-warning"><%= category.created_at.to_formatted_s(:long) %></h6>
+              <% else %>
+              <h3 class="card-title" style="font-size: clamp(18px, 4vw, 24px);"><%= category.category_name.truncate(60) %><%= link_to '', category_path(category), class: "text-info fas fa-arrow-right" %></h3>
+              <% end %>
+
+              
+              <h6 class="card-subtitle mb-2 text-muted small-warning"><%= category.updated_at.to_formatted_s(:long) %></h6>
+              
+              <% if category.category_description.size <= 120 %>
               <p class="card-text"><%= category.category_description %></p>
+              <% else %>
+              <p class="card-text"><%= category.category_description.truncate(120) %> <%= link_to 'more', category_path(category), class: "text-info" %></p>
+              <% end %>
+
               <hr />
               <div class="row d-block text-center">
-              <%= link_to 'View Tasks', category_tasks_path(category), class: "card-link btn btn-info btn-lg btn-block " %>
+              <%= link_to ' Tasks', category_tasks_path(category), class: "card-link btn btn-info btn-lg btn-block fas fa-cogs" %>
               <hr />
               </div>
               <div class="row d-inline">

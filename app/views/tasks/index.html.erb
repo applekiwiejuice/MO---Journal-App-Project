@@ -7,61 +7,73 @@
   <div class="col-lg-3 col-md-4 col-sm-12">
   <div class="sticky-top mt-3">
       <%= image_tag ('mo_task.png'), class: "img-60" %>
-      <h1>Categories <i class="fas fa-angle-right"></i> <%=@category.category_name%></h1>
+      <h1>Categories <i class="fas fa-angle-right"></i> <%=@category.category_name.truncate(40)%></h1>
       <%# <p>MO™ Tasks</p> %>
       <%= link_to ' ', categories_path(current_user.id), class: "far fa-arrow-alt-circle-left btn btn-lg btn-light" %>
-      <%= link_to ' Task', new_category_task_path, class: "fas fa-plus btn btn-lg btn-light", id: "addTask" %>
+      <%= link_to ' Task', new_category_task_path, class: "fas fa-plus btn btn-lg btn-info", id: "addTask" %>
       <hr />
   </div>
   </div>
   
   <div class="col-sm-12 col-md-8 col-lg-9">
-      <div class="container">
-      <div class="row mb-3">
-          <% @tasks.each do |task| %>
-          
-          <div class="col-sm-12 col-lg-6">
-          <% if task.task_done == true %>
-          <div class="card text-white bg-dark border-success mb-4">
-            <% else %>
-          <div class="card text-white bg-dark mb-4 box-shadow">
-          <% end %>
-              <div class="card-body">
-              <h5 class="card-title" style="font-size: clamp(18px, 4vw, 24px);"><%= task.task_name %></h5>
-              <h6 class="card-subtitle mb-2 text-muted small-warning"><%= task.created_at.to_formatted_s(:long) %></h6>
-              <p class="card-text mb-2"><%= task.task_description %></p>
-              <hr />
-              <div class="row d-inline">
+      
+    <table class="table table-hover table-dark">
+    
+  <thead>
+    <tr>
+      <th scope="col">Task</th>
+      <th scope="col">Description</th>
+      <th scope="col">Deadline</th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody>
+  <% @tasks.each do |task| %>
+    <tr>
+    <% if task.task_done == true %>
+      
+      <% if task.task_name.size <= 60 %>
+              <td><i class="fas fa-check-circle text-success fa-2x"></i><h5><%= task.task_name%></h5></td>
+              <% else %>
+              <td><i class="fas fa-check-circle text-success fa-2x"></i><h5><%= task.task_name.truncate(60) %><%= link_to '', category_task_path(:id => task.id), class: "text-info fas fa-arrow-right" %></h5></td>
+      <% end %>
 
-              <%= link_to 'Edit', edit_category_task_path(:id => task.id), class: "card-link btn btn-light btn-sm" %>
-              <%= link_to 'Delete', category_task_path(:id => task.id), method: :delete, data: { confirm: 'Are you sure?' }, class: "card-link btn btn-danger btn-sm"%>
-              </div>
+    <% else %>
+      <td><h5><%= task.task_name %></h5></td>
+    <% end %>
+      <td><%= task.task_description %></td>
+      <td class="small-warning"><%= task.task_deadline %></td>
+      <td>
 
-              <div class="row d-inline">
-
-              <% if task.task_done == true %>
+<div class="container">
+  <div class="row">
+    <div class="col m-1">
+       <% if task.task_done == true %>
                 <%= button_to "Undone", category_task_path(:id => task.id),   
                 params: {:task => { :id => task.id, :task_done => false, :user_id => current_user.id }}, 
-                method: :put, class: "mt-3 card-link btn btn-outline-light btn-sm" %>
-                <hr />
-                <p class="card-text text-success">Task done!</p>
+                method: :put, class: "card-link btn btn-outline-light btn-sm" %>
                 <% else %>
                 <%= button_to "Mark as done", category_task_path(:id => task.id),   
                 params: {:task => { :id => task.id, :task_done => true, :user_id => current_user.id }}, 
-                method: :put, data: { confirm: 'Are you sure?' }, class: "mt-3 card-link btn btn-success btn-sm" %>
-                <hr />
-                <p class="card-text text-muted">Deadline: <%= task.task_deadline.to_formatted_s(:long) %></p>
+                method: :put, data: { confirm: 'Are you sure?' }, class: "card-link btn btn-success btn-sm" %>
               <% end %>
+    </div>
+    <div class="col m-1">
+       <%= link_to 'Edit', edit_category_task_path(:id => task.id), class: "card-link btn btn-light btn-sm" %>
+    </div>
+    <div class="col">
+      <%= link_to 'Delete', category_task_path(:id => task.id), method: :delete, data: { confirm: 'Are you sure?' }, class: "card-link btn btn-danger btn-sm"%>
+    </div>
+  </div>
+</div>
+     
+      </td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
 
-              </div>
-              
-            </div>
-          </div>
-      </div>
-          <% end %>
-
-      </div>
-      </div>
+      
   </div>
   
 </div>

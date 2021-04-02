@@ -1,7 +1,8 @@
 .form-signin {
   width: 100%;
-  max-width: 330px;
+  max-width: 100%;
   padding: 15px;
+  margin: auto;
   margin: auto;
 }
 .form-signin .checkbox {
@@ -26,4 +27,16 @@
   margin-bottom: 10px;
   border-top-left-radius: 0;
   border-top-right-radius: 0;
+}
+
+.facebook-button-color {
+  background-color: #3b5998;
+}
+
+.google-button-color {
+  background-color: #4285F4;
+}
+
+.github-button-color {
+  background-color: #171515;
 }

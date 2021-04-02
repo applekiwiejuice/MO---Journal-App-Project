@@ -1,10 +1,15 @@
-<h1><%= @category.category_name %></h1>
-<h3>
-  "<%= @category.category_description %>"
-</h3>
+<div class="card mt-5 bg-dark">
+  <h5 class="card-header"><%= @category.category_name %></h5>
+  <div class="card-body">
+    <h5 class="card-subtitle mb-2 text-muted small-warning"><%= @category.updated_at.to_formatted_s(:long) %></h5>
+    <p class="card-text"><%= @category.category_description %></p>
+  </div>
+</div>
 
 <br />
 
 <%= link_to 'Edit', edit_category_path(@category), class: "card-link btn btn-outline-light btn-lg" %>
 
 <%= link_to 'Ok', categories_path, class: "card-link btn btn-outline-primary btn-lg" %>
+
+

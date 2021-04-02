@@ -56,9 +56,9 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   #       end
   # end
 
-  # def failure
-  #   super
-  # end
+  def failure
+    super
+  end
 
   # alias_method :facebook, :all
   # alias_method :github, :all
