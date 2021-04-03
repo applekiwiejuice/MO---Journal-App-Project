@@ -1,6 +1,6 @@
 
 
-<div class="container mt-5">
+<div class="container mt-5 ">
 <div class="row">
   
   
@@ -14,13 +14,13 @@
       <hr />
   </div>
   </div>
-  
-  <div class="col-sm-12 col-md-8 col-lg-9">
-      
-    <table class="table table-hover table-dark">
+
+  <div class="col-sm-12 col-md-8 col-lg-9 table-responsive">
+    <table class="table table-hover table-dark table-striped table-bordered">
     
   <thead>
     <tr>
+      <th scope="col">Status</th>
       <th scope="col">Task</th>
       <th scope="col">Description</th>
       <th scope="col">Deadline</th>
@@ -32,42 +32,59 @@
     <tr>
     <% if task.task_done == true %>
       
-      <% if task.task_name.size <= 60 %>
-              <td><i class="fas fa-check-circle text-success fa-2x"></i><h5><%= task.task_name%></h5></td>
-              <% else %>
-              <td><i class="fas fa-check-circle text-success fa-2x"></i><h5><%= task.task_name.truncate(60) %><%= link_to '', category_task_path(:id => task.id), class: "text-info fas fa-arrow-right" %></h5></td>
+      <% if task.task_name.size <= 50 %>
+        <td>
+        <p class="small-warning text-success" style="margin: 0;">Task done!</p>
+        <i class="fas fa-check-circle text-success fa-2x" ></i>
+        </td>
+        <td>
+        <h6><%= task.task_name %></h6>
+        </td>
+        
+        <% else %>
+        <td>
+        <p class="small-warning text-success" style="margin: 0;">Task done!</p>
+        <i class="fas fa-check-circle text-success fa-2x"></i>
+        </td>
+        <td>
+        <h6><%= task.task_name.truncate(50) %><%= link_to 'more', category_task_path(:id => task.id), class: "text-info small-warning" %></h6>
+        </td>
+        
       <% end %>
 
     <% else %>
-      <td><h5><%= task.task_name %></h5></td>
+      <td></td>
+      <td><h6><%= task.task_name.truncate(50) %></h6></td>
     <% end %>
-      <td><%= task.task_description %></td>
-      <td class="small-warning"><%= task.task_deadline %></td>
-      <td>
 
-<div class="container">
-  <div class="row">
-    <div class="col m-1">
+    <% if task.task_name.size <= 250 %>
+      <td><%= task.task_description %></td>
+    <% else %>
+      <td><%= task.task_description.truncate(250) %> <%= link_to 'more', category_task_path(:id => task.id), class: "text-info" %></td>
+    <% end %>
+    
+    <% if task.task_deadline.nil? %>
+      <td class="small-warning">N/A</td>
+    <% else %>
+      <td>
+      <p class="small-warning"><%= task.task_deadline.to_formatted_s(:long) %></p>
+      </td>
+    <% end %>
+
+   
+    <td class="d-flex justify-content-between flex-column mx-auto">
        <% if task.task_done == true %>
                 <%= button_to "Undone", category_task_path(:id => task.id),   
                 params: {:task => { :id => task.id, :task_done => false, :user_id => current_user.id }}, 
-                method: :put, class: "card-link btn btn-outline-light btn-sm" %>
+                method: :put, class: "btn btn-outline-light btn-sm mb-1 btn-block " %>
                 <% else %>
-                <%= button_to "Mark as done", category_task_path(:id => task.id),   
+                <%= button_to "Done", category_task_path(:id => task.id),   
                 params: {:task => { :id => task.id, :task_done => true, :user_id => current_user.id }}, 
-                method: :put, data: { confirm: 'Are you sure?' }, class: "card-link btn btn-success btn-sm" %>
+                method: :put, data: { confirm: 'Are you sure?' }, class: "btn btn-outline-primary btn-sm mb-1 btn-block" %>
               <% end %>
-    </div>
-    <div class="col m-1">
-       <%= link_to 'Edit', edit_category_task_path(:id => task.id), class: "card-link btn btn-light btn-sm" %>
-    </div>
-    <div class="col">
-      <%= link_to 'Delete', category_task_path(:id => task.id), method: :delete, data: { confirm: 'Are you sure?' }, class: "card-link btn btn-danger btn-sm"%>
-    </div>
-  </div>
-</div>
-     
-      </td>
+      <%= button_to 'Edit', edit_category_task_path(:id => task.id), class: "btn btn-light btn-sm mb-1 btn-block" %>
+      <%= link_to ' ', category_task_path(:id => task.id), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger btn-sm fas fa-times-circle mb-1 btn-block" %>
+    </td>
     </tr>
     <% end %>
   </tbody>

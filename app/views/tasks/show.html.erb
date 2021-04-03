@@ -1,13 +1,20 @@
-<h1>
-  <%= @task.task_name %>
-</h1>
-<p>
-  <%= @task.task_description %>
-</p>
-<p>
-  <strong>Task deadline:</strong>
-  <%= @task.task_deadline.to_formatted_s(:long) %>
-</p>
 
-<%= link_to 'Edit', edit_category_task_path(@task) %> |
-<%= link_to 'Back', category_tasks_path %>
+<div class="card mt-5 bg-dark p-1">
+<% if @task.task_done == true %>
+  <i class="fas fa-check-circle text-success fa-2x mt-2"></i>
+  <p class="small-warning text-success">Task done!</p>
+<% end %>
+  <h5 class="card-header"><%= @task.task_name %></h5>
+  <div class="card-body">
+    <h5 class="card-subtitle mb-2 text-muted small-warning"><strong>Task created at:</strong> <%= @task.created_at %></h5>
+    <h5 class="card-subtitle mb-2 text-muted small-warning"><strong>Task updated at:</strong> <%= @task.updated_at %></h5>
+    <h5 class="card-subtitle mb-2 text-muted small-warning"><strong>Task deadline:</strong> <%= @task.task_deadline %></h5>
+    <p class="card-text"><%= @task.task_description %></p>
+  </div>
+</div>
+
+<br />
+
+<%= link_to 'Edit',  edit_category_task_path(@task), class: "card-link btn btn-outline-light btn-lg" %>
+
+<%= link_to 'Ok', category_tasks_path, class: "card-link btn btn-outline-primary btn-lg" %>

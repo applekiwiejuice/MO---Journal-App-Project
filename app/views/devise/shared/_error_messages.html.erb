@@ -1,6 +1,6 @@
 <% if resource.errors.any? %>
   <div id="error_explanation">
-      <div class="alert alert-light alert-dismissible fade show alert-fixed text-center" role="alert">
+      <div class="alert alert-info alert-dismissible fade show alert-fixed text-center" role="alert">
       <% resource.errors.full_messages.each do |message| %>
         <div class="small-warning d-inline p-2"><%= message %></div>
       <% end %>

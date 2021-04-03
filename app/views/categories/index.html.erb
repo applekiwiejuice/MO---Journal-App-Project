@@ -18,17 +18,17 @@
       <div class="row mb-3">
       <% if user_signed_in? %>
           <% @categories.each do |category| %>
-          <div class="col-sm-12 col-md-6 col-lg-6">
+          <div class="col-sm-12 col-md-12 col-lg-6">
             <div class="card bg-dark border-info text-white mb-4 box-shadow">
               <div class="card-body">
 
               <% if category.category_name.size <= 60 %>
               <h3 class="card-title" style="font-size: clamp(18px, 4vw, 24px);"><%= category.category_name %></h3>
               <% else %>
-              <h3 class="card-title" style="font-size: clamp(18px, 4vw, 24px);"><%= category.category_name.truncate(60) %><%= link_to '', category_path(category), class: "text-info fas fa-arrow-right" %></h3>
+              <h3 class="card-title" style="font-size: clamp(18px, 4vw, 24px);"><%= category.category_name.truncate(60) %> <%= link_to 'more', category_path(category), class: "text-info small-warning" %></h3>
               <% end %>
 
-              
+              <h6 class="card-subtitle mb-2 mb-3">Number of tasks: <%= category.tasks.count %></h6>
               <h6 class="card-subtitle mb-2 text-muted small-warning"><%= category.updated_at.to_formatted_s(:long) %></h6>
               
               <% if category.category_description.size <= 120 %>
