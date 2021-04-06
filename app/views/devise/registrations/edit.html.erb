@@ -2,6 +2,18 @@
 <h2>My Account</h2>
 <h3><%= current_user.email %></h3>
 
+<% if current_user.provider == 'google_oauth2' %>
+<p>You are currently signed-in with Google</p>
+<% end %>
+
+<% if current_user.provider == 'facebook' %>
+<p>You are currently signed-in with Facebook</p>
+<% end %>
+
+<% if current_user.provider == 'github' %>
+<p>You are currently signed-in with Github</p>
+<% end %>
+
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }, :html => {:class => "form-edit"}) do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
  <div class="container">
