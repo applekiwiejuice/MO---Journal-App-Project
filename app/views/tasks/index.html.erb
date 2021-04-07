@@ -15,7 +15,7 @@
   </div>
   </div>
 
-  <div class="col-sm-12 col-md-8 col-lg-9 table-responsive">
+  <div class="col-sm-12 col-md-8 col-lg-9">
     <table class="table table-hover table-dark table-striped table-bordered">
     
   <thead>
@@ -32,35 +32,49 @@
     <tr>
     <% if task.task_done == true %>
       
-      <% if task.task_name.size <= 50 %>
+      <% if task.task_name.size <= 20 %>
         <td>
         <p class="small-warning text-success" style="margin: 0;">Task done!</p>
         <i class="fas fa-check-circle text-success fa-2x" ></i>
         </td>
         <td>
+        <div style="word-wrap: break-word;">
         <h6><%= task.task_name %></h6>
+        </div>
         </td>
-        
         <% else %>
         <td>
         <p class="small-warning text-success" style="margin: 0;">Task done!</p>
         <i class="fas fa-check-circle text-success fa-2x"></i>
         </td>
         <td>
-        <h6><%= task.task_name.truncate(50) %><%= link_to 'more', category_task_path(:id => task.id), class: "text-info small-warning" %></h6>
+        <div style="word-wrap: break-word;">
+        <h6><%= task.task_name.truncate(20) %><%= link_to 'more', category_task_path(:id => task.id), class: "text-info small-warning" %></h6>
+        </div>
         </td>
-        
       <% end %>
 
     <% else %>
       <td></td>
-      <td><h6><%= task.task_name.truncate(50) %></h6></td>
+      <td>
+      <div style="word-wrap: break-word;">
+      <% if task.task_name.size <= 20 %>
+      <h6><%= task.task_name %></h6>
+      <% else %>
+      <h6><%= task.task_name.truncate(20) %><%= link_to 'more', category_task_path(:id => task.id), class: "text-info small-warning" %></h6>
+      <% end %>
+      </div>
+      </td>
     <% end %>
 
-    <% if task.task_name.size <= 250 %>
+    <% if task.task_name.size <= 15 %>
+      <div style="word-wrap: break-word;">
       <td><%= task.task_description %></td>
+      </div>
     <% else %>
-      <td><%= task.task_description.truncate(250) %> <%= link_to 'more', category_task_path(:id => task.id), class: "text-info" %></td>
+      <div style="word-wrap: break-word;">
+      <td><%= task.task_description.truncate(15) %> <%= link_to 'more', category_task_path(:id => task.id), class: "text-info" %></td>
+      </div>
     <% end %>
     
     <% if task.task_deadline.nil? %>

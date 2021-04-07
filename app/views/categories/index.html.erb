@@ -23,18 +23,18 @@
               <div class="card-body">
 
               <% if category.category_name.size <= 60 %>
-              <h3 class="card-title" style="font-size: clamp(18px, 4vw, 24px);"><%= category.category_name %></h3>
+              <h3 class="card-title" style="font-size: clamp(18px, 4vw, 24px);">Category Name: <%= category.category_name %></h3>
               <% else %>
-              <h3 class="card-title" style="font-size: clamp(18px, 4vw, 24px);"><%= category.category_name.truncate(60) %> <%= link_to 'more', category_path(category), class: "text-info small-warning" %></h3>
+              <h3 class="card-title" style="font-size: clamp(18px, 4vw, 24px);">Category Name: <%= category.category_name.truncate(60) %> <%= link_to 'more', category_path(category), class: "text-info small-warning" %></h3>
               <% end %>
 
               <h6 class="card-subtitle mb-2 mb-3">Number of tasks: <%= category.tasks.count %></h6>
               <h6 class="card-subtitle mb-2 text-muted small-warning"><%= category.updated_at.to_formatted_s(:long) %></h6>
               
               <% if category.category_description.size <= 120 %>
-              <p class="card-text"><%= category.category_description %></p>
+              <p class="card-text">Description: <%= category.category_description %></p>
               <% else %>
-              <p class="card-text"><%= category.category_description.truncate(120) %> <%= link_to 'more', category_path(category), class: "text-info" %></p>
+              <p class="card-text">Description: <%= category.category_description.truncate(120) %> <%= link_to 'more', category_path(category), class: "text-info" %></p>
               <% end %>
 
               <hr />

@@ -4,12 +4,15 @@
   <i class="fas fa-check-circle text-success fa-2x mt-2"></i>
   <p class="small-warning text-success">Task done!</p>
 <% end %>
+  <h1>Task:</h1>
   <h5 class="card-header"><%= @task.task_name %></h5>
   <div class="card-body">
-    <h5 class="card-subtitle mb-2 text-muted small-warning"><strong>Task created at:</strong> <%= @task.created_at %></h5>
-    <h5 class="card-subtitle mb-2 text-muted small-warning"><strong>Task updated at:</strong> <%= @task.updated_at %></h5>
-    <h5 class="card-subtitle mb-2 text-muted small-warning"><strong>Task deadline:</strong> <%= @task.task_deadline %></h5>
+    <h3>Description:</h3>
     <p class="card-text"><%= @task.task_description %></p>
+    <hr />
+    <h5 class="card-subtitle mb-2 text-muted small-warning"><strong>Task created at:</strong> <%= @task.created_at.to_formatted_s(:long) %></h5>
+    <h5 class="card-subtitle mb-2 text-muted small-warning"><strong>Task updated at:</strong> <%= @task.updated_at.to_formatted_s(:long) %></h5>
+    <h5 class="card-subtitle mb-2 text-muted small-warning"><strong>Task deadline:</strong> <%= @task.task_deadline.to_formatted_s(:long) %></h5>
   </div>
 </div>
 

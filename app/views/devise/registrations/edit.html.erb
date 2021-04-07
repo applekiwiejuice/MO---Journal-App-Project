@@ -1,64 +1,103 @@
-<%= image_tag ('mo_create.png'), class: "img-30" %>
-<h2>My Account</h2>
-<h3><%= current_user.email %></h3>
 
-<% if current_user.provider == 'google_oauth2' %>
-<p>You are currently signed-in with Google</p>
-<% end %>
-
-<% if current_user.provider == 'facebook' %>
-<p>You are currently signed-in with Facebook</p>
-<% end %>
-
-<% if current_user.provider == 'github' %>
-<p>You are currently signed-in with Github</p>
-<% end %>
-
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }, :html => {:class => "form-edit"}) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
- <div class="container">
+  <div class="container mt-3">
   <div class="row">
-    <div class="col-lg-6 col-sm-12">
-    <% if current_user.provider.nil? %>
-      <%= f.label "First Name" %>
-      <%= f.text_field :first_name, autofocus: true, type: "text", class: "form-control", placeholder: "First Name" %>
-      <%= f.label "Last Name" %>
-      <%= f.text_field :last_name, autofocus: true, type: "text", class: "form-control", placeholder: "Last Name" %>
-      <%= f.label :email %>
-      <%= f.email_field :email, autocomplete: "email", type: "email", id: "inputEmail", class: "form-control", placeholder: "Email address" %>
-    <% end %>
-    </div>
-    <div class="col-lg-6 col-sm-12">
-    <% if current_user.provider.nil? %>
-      <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-      <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+
+    <div class="col-lg-4 col-md-6 col-sm-12 text-center p-3">
+      <%= image_tag ('mo_create.png'), class: "img-60" %>
+      <h2>My Account</h2>
+      <div style="word-wrap: break-word;">
+      <h5><%= current_user.email %></h5>
+      </div>
+
+      <% if current_user.provider == 'google_oauth2' %>
+      <p>You are currently signed-in with Google</p>
       <% end %>
 
-      <%= f.label :password %>
-      <%= f.password_field :password, autocomplete: "new-password", type: "password", id: "inputPassword", class: "form-control", placeholder: "New Password" %>
-      <%= f.label :password_confirmation %>
-      <%= f.password_field :password_confirmation, autocomplete: "new-password", type: "password", id: "inputPassword", class: "form-control", placeholder: "Re-type New Password" %>
-      <% if @minimum_password_length %>
+      <% if current_user.provider == 'facebook' %>
+      <p>You are currently signed-in with Facebook</p>
+      <% end %>
+
+      <% if current_user.provider == 'github' %>
+      <p>You are currently signed-in with Github</p>
+      <% end %>
+
+      <div class="text-center">
+      <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, class: "btn btn-lg btn-outline-danger btn-sm mt-3" %>
       <br />
-      <em class="small-warning"><%= @minimum_password_length %> characters minimum</em>
-      <% end %>
-      <br /><i class="small-warning">(leave blank if you don't want to change it)</i><br />
-
-      <%= f.label :current_password %> 
-      <%= f.password_field :current_password, autocomplete: "current-password", type: "password", id: "inputPassword", class: "form-control", placeholder: "Current Password" %>
-      <i class="small-warning">(we need your current password to confirm your changes)</i><br />
-      <% end %>
+      <%= link_to " Back", :back, class: "far fa-arrow-alt-circle-left mt-2" %>
+      </div>
     </div>
-    <div class="col-lg-12">
-    <% if current_user.provider.nil? %>
-      <%= f.submit "Update", class: "btn btn-lg btn-outline-light btn-block mt-3" %>
+
+    <div class="col-lg-8 col-md-6 col-sm-12 px-3">
+      <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }, :html => {:class => "form-edit"}) do |f| %>
+      <%= render "devise/shared/error_messages", resource: resource %>
+        <% if current_user.provider.nil? %>
+          <%= f.label :first_name %>
+          <%= f.text_field :first_name, 
+              autofocus: true, 
+              type: "text", 
+              class: "form-control", 
+              placeholder: "First Name" %>
+
+          <%= f.label :last_name %>
+          <%= f.text_field :last_name, 
+              autofocus: true, 
+              type: "text", 
+              class: "form-control", 
+              placeholder: "Last Name" %>
+
+          <%= f.label :email, for: "inputEmail" %>
+          <%= f.email_field :email, 
+              autocomplete: "email", 
+              type: "email", 
+              id: "inputEmail", 
+              class: "form-control", 
+              placeholder: "Email address" %>
+        <% end %>
+      
+        <% if current_user.provider.nil? %>
+          <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+          <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+          <% end %>
+
+          <%= f.label :password, for: "inputPassword" %>
+          <%= f.password_field :password, 
+              autocomplete: "new-password", 
+              type: "password", 
+              id: "inputPassword", 
+              class: "form-control", 
+              placeholder: "New Password" %>
+
+          <%= f.label :password_confirmation, for: "inputPasswordConfirm" %>
+          <%= f.password_field :password_confirmation, 
+              autocomplete: "new-password", 
+              type: "password", 
+              id: "inputPasswordConfirm", 
+              class: "form-control", 
+              placeholder: "Re-type New Password" %>
+
+          <% if @minimum_password_length %>
+          <br />
+          <em class="small-warning"><%= @minimum_password_length %> characters minimum</em>
+          <% end %>
+          <br /><i class="small-warning">(leave blank if you don't want to change it)</i><br />
+
+          <%= f.label :current_password, for: "inputPasswordCurrent" %> 
+          <%= f.password_field :current_password, 
+              autocomplete: "current-password", 
+              type: "password", 
+              id: "inputPasswordCurrent", 
+              class: "form-control", 
+              placeholder: "Current Password" %>
+
+          <i class="small-warning">(we need your current password to confirm your changes)</i><br />
+          <% end %>
+        <% if current_user.provider.nil? %>
+          <%= f.submit "Update", class: "btn btn-lg btn-outline-light btn-block mt-3" %>
+        <% end %>
     <% end %>
-    </div>
-  </div>
-  
-<% end %>
 
-<%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, class: "btn btn-lg btn-outline-secondary btn-block mt-3" %>
+    </div>
+
+  </div>
 </div>
-<br />
-<%= link_to "Back", :back %>
